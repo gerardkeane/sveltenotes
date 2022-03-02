@@ -1,47 +1,47 @@
 <script context="module">
-    async function getData (limit = 150) {
-        const promises = [];
-        for (let i = 1; i <= limit; i++) {
-            const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
-            promises.push(fetch(url).then(res => res.json()))
-        }
-        // console.log(promises)
+    // async function getData (limit = 150) {
+    //     const promises = [];
+    //     for (let i = 1; i <= limit; i++) {
+    //         const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+    //         promises.push(fetch(url).then(res => res.json()))
+    //     }
+    //     // console.log(promises)
 
-        // console.log(Promise.all(promises).then(results => {
-        //     console.log(results.map(data => ({
-        //         name: data.name,
-        //         id: data.id,
-        //         image: data.sprites["front_default"],
-        //         type: data.types.map(type => type.type.name).join(", "),
-        //         ability: data.abilities.map(ability => ability.ability.name).join(','),
-        //         moves: data.moves.map(move => move.move.name).slice(0, 10).join(', ')
-        //     })))
-        // })
-        // )
+    //     // console.log(Promise.all(promises).then(results => {
+    //     //     console.log(results.map(data => ({
+    //     //         name: data.name,
+    //     //         id: data.id,
+    //     //         image: data.sprites["front_default"],
+    //     //         type: data.types.map(type => type.type.name).join(", "),
+    //     //         ability: data.abilities.map(ability => ability.ability.name).join(','),
+    //     //         moves: data.moves.map(move => move.move.name).slice(0, 10).join(', ')
+    //     //     })))
+    //     // })
+    //     // )
 
-        return Promise.all(promises).then(results => {
-            return results.map(data => ({
-                name: data.name,
-                id: data.id,
-                image: data.sprites["front_default"],
-                type: data.types.map(type => type.type.name).join(", "),
-                ability: data.abilities.map(ability => ability.ability.name).join(','),
-                moves: data.moves.map(move => move.move.name).slice(0, 10).join(', ')
-            }))
-        })
-        // const pokemon = Promise.all(promises).then(results => {
-        //     return results.map(data => ({
-        //         name: data.name,
-        //         id: data.id,
-        //         image: data.sprites["front_default"],
-        //         type: data.types.map(type => type.type.name).join(", "),
-        //         ability: data.abilities.map(ability => ability.ability.name).join(','),
-        //         moves: data.moves.map(move => move.move.name).slice(0, 10).join(', ')
-        //     }))
-        // })
-        // console.log(pokemon)
-        // return pokemon
-    }
+    //     return Promise.all(promises).then(results => {
+    //         return results.map(data => ({
+    //             name: data.name,
+    //             id: data.id,
+    //             image: data.sprites["front_default"],
+    //             type: data.types.map(type => type.type.name).join(", "),
+    //             ability: data.abilities.map(ability => ability.ability.name).join(','),
+    //             moves: data.moves.map(move => move.move.name).slice(0, 10).join(', ')
+    //         }))
+    //     })
+    //     // const pokemon = Promise.all(promises).then(results => {
+    //     //     return results.map(data => ({
+    //     //         name: data.name,
+    //     //         id: data.id,
+    //     //         image: data.sprites["front_default"],
+    //     //         type: data.types.map(type => type.type.name).join(", "),
+    //     //         ability: data.abilities.map(ability => ability.ability.name).join(','),
+    //     //         moves: data.moves.map(move => move.move.name).slice(0, 10).join(', ')
+    //     //     }))
+    //     // })
+    //     // console.log(pokemon)
+    //     // return pokemon
+    // }
 
     export async function load(limit = 150) {
         const promises = [];
@@ -50,6 +50,10 @@
             promises.push(fetch(url).then(res => res.json()))
         }
         const data = await Promise.all(promises).then(results => {
+            console.log("promises array: ", promises)
+            console.log("results: ", results.map(data => {
+                name: data.name
+            }))
             return results.map(data => ({
                 name: data.name,
                 id: data.id,
